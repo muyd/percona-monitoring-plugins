@@ -82,7 +82,7 @@ for file in release/code/cacti/definitions/*.def; do
    fi
    SCRIPT=$(awk '/Autobuild/{ print $NF; exit }' "$file");
    FILE="release/code/cacti/templates/cacti_host_template_percona_${NAME}_server_ht_0.8.6i-sver${VERSION}.xml"
-   perl cacti/bin/pmp-cacti-template --script release/code/cacti/scripts/$SCRIPT "$file" > "${FILE}"
+   perl cacti/bin/pmp-cacti-template --script release/code/cacti/scripts/$SCRIPT --graph_height 200 --graph_width 700 "$file" > "${FILE}"
    MD5=$(_md5 "${FILE}")
    sed -i "s/CUSTOMIZED_XML_TEMPLATE/${MD5}/" "${FILE}"
 done
